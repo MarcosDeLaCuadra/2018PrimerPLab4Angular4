@@ -1,0 +1,51 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <input type="button" value="traer" (click)="Traer()" name="" id="">
+
+  <h3>Editar <input type="checkbox" [(ngModel)]="cbx" name="editar" id="editar" ></h3>
+
+  <div id="alta" [hidden]="cbx">
+    nombre <input type="text" [(ngModel)]="nombre" >
+    sexo<input type="text" [(ngModel)]="sexo">
+    mail<input type="text" [(ngModel)]="mail">
+    password <input type="text" [(ngModel)]="password">
+    imagen <input type="text" [(ngModel)]="imagen">
+    <input type="button" value="Alta" (click)="Insertar()">
+  </div>
+  
+  <ul>
+    <li *ngFor=" let item of dato; trackBy: trackByFn;">
+      
+       <div *ngIf=" item.sexo == 'f' " style="color:pink"> 
+          {{item.nombre}}
+          {{item.sexo}}
+          {{item.mail}}
+          <img src= {{item.imagen}} style="width: 30px;"> 
+          <input type="button" value="borrar" (click)="Borrar(item.id)">    
+        </div> 
+        <div *ngIf=" item.sexo != 'f' " > 
+            {{item.nombre}}
+            {{item.sexo}}
+            {{item.mail}}
+            <img src= {{item.imagen}} style="width: 30px;">     
+          <input type="button" value="borrar" (click)="Borrar(item.id)">
+          </div> 
+      <!-- <img src="./assets/descarga.png" style="width: 30px;">-->
+      
+      
+    </li>
+
+  </ul>
+
+  <div>
+    Ouput    
+    <app-output (enviarDato)="RecibirDato($event)" ></app-output>
+  </div>
+
+  <div>
+    Input 
+    <app-input [objeto]="dato"></app-input>
+  </div>
